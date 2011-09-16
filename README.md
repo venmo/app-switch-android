@@ -1,12 +1,15 @@
 Using the Venmo SDK with your app is easy!  Just follow these steps:
 
-1) Download the two files listed in this repository, and include them in your directory: VenmoSDK.java and VenmoResponse.java.  
+1) First you need to register your app with Venmo here: https://venmo.com/account/app/new (for a description on what these fields are,
+go here and scroll to the bottom: https://venmo.com/api).  
 
-2) You'll also need to download json_simple-1.1.jar from here: http://code.google.com/p/json-simple/.  Add this to your libs directory (create this folder if it doesn't already exist). 
+2) Download the two files listed in this repository, and include them in your directory: VenmoSDK.java and VenmoResponse.java.  
 
-3) You need to add that json jar to your class path.  To do so, in Eclipse go to Project -> Properties, and then click "Java Build Path" on the left.  Click the Libraries tab at the top.  Click "Add Jar" and then find the .jar file you just put in your libs directory.  Select it and click "OK". 
+3) You'll also need to download json_simple-1.1.jar from here: http://code.google.com/p/json-simple/.  Add this to your libs directory (create this folder if it doesn't already exist). 
 
-4) Now, you're ready to use the SDK!  From your app, include the following code when you want the Venmo app to open:
+4) You need to add that json jar to your class path.  To do so, in Eclipse go to Project -> Properties, and then click "Java Build Path" on the left.  Click the Libraries tab at the top.  Click "Add Jar" and then find the .jar file you just put in your libs directory.  Select it and click "OK". 
+
+5) Now, you're ready to use the SDK!  From your app, include the following code when you want the Venmo app to open:
 
     Intent sendIntent = VenmoSDK.openVenmoPayment(app_id, local_app_id, app_name, recipient, amount, note, txn);
     try{
@@ -31,7 +34,7 @@ where all of these parameters are Strings:
 
 Then, you need to provide a way for the Venmo app to be able to get back to your app after the request goes through.  Here's how: 
 
-5) Add this to your manifest file: 
+6) Add this to your manifest file: 
 
 	<activity android:name=".URLActivity">
 		<intent-filter>
@@ -44,8 +47,7 @@ Then, you need to provide a way for the Venmo app to be able to get back to your
 
 where 9999 is your app_id and abcd is the app_local_id you created above.
 
-6) Create a file named URLActivity.java, which should extend Activity.  This is the activity that is called when control is given back to your app, after a payment has gone through and the user pressed "back to your app".  Inside of the onCreate method, include the following:
-
+7) Create a file named URLActivity.java, which should extend Activity.  This is the activity that is called when control is given back to your app, after a payment has gone through and the user pressed "back to your app".  Inside of the onCreate method, include the following:
 
 	Uri data = getIntent().getData();
 	String signed_request = data.getQueryParameter("signed_request");	
@@ -60,5 +62,4 @@ If you want to display the results of the transaction, then the response variabl
 	response.getPaymentId()
 
 
-And that's it!  
-
+And that's it!  Happy coding! 
