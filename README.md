@@ -21,15 +21,13 @@ scroll to the bottom of this page: https://venmo.com/api).
     	myListActivity.startActivity(sendIntent);
     }
 
-where all of these parameters are Strings:
 * app_id is the app_id you have registered with venmo.com 
 * app_local_id is something you make up. An example is "abcd".  
 * app_name is the name of your app 
 * recipient is the venmo username, phone number, or email address of the person who is being paid or charged 
 * amount is the amount to be paid or charged 
 * note is the note that will be sent with the payment/charge.  For example, the note might be "for a drink on me!" 
-
-
+* txn is either "pay" or "charge"
 
 
 Then, you need to provide a way for the Venmo app to be able to get back to your app after the request goes through.  Here's how: 
