@@ -1,7 +1,7 @@
 Using the Venmo SDK with your app is easy!  Just follow these steps:
 
 1) First you need to register your app with Venmo here: https://venmo.com/account/app/new (for a description on what these fields are,
-go here and scroll to the bottom: https://venmo.com/api).  
+scroll to the bottom of this page: https://venmo.com/api).  
 
 2) Download the two files listed in this repository, and include them in your directory: VenmoSDK.java and VenmoResponse.java.  
 
@@ -22,12 +22,12 @@ go here and scroll to the bottom: https://venmo.com/api).
     }
 
 where all of these parameters are Strings:
-	app_id is the app_id you have registered with venmo.com
-	app_local_id is something you make up. An example is "abcd". 
-	app_name is the name of your app
-	recipient is the venmo username, phone number, or email address of the person who is being paid or charged
-	amount is the amount to be paid or charged
-	note is the note that will be sent with the payment/charge.  For example, the note might be "for a drink on me!"
+    app_id is the app_id you have registered with venmo.com
+    app_local_id is something you make up. An example is "abcd". 
+    app_name is the name of your app
+    recipient is the venmo username, phone number, or email address of the person who is being paid or charged
+    amount is the amount to be paid or charged
+    note is the note that will be sent with the payment/charge.  For example, the note might be "for a drink on me!"
 
 
 
