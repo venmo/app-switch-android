@@ -7,7 +7,7 @@ scroll to the bottom of this page: https://venmo.com/api).
 
 3) You'll also need to download json_simple-1.1.jar from here: http://code.google.com/p/json-simple/.  Add this to your libs directory (create this folder if it doesn't already exist). 
 
-4) You need to add that json jar to your class path.  To do so, in Eclipse go to Project -> Properties, and then click "Java Build Path" on the left.  Click the Libraries tab at the top.  Click "Add Jar" and then find the .jar file you just put in your libs directory.  Select it and click "OK". 
+4) You need to add that json jar to your class path.  To do so, in Eclipse go to Project -> Properties, and then click "Java Build Path" on the left.  Click the Libraries tab at the top.  Click "Add Jar" and then find the .jar file you just put in your libs directory.  Select it and click "OK".  See screenshot.png for a screenshot of this. 
 
 5) Now, you're ready to use the SDK!  From your app, include the following code when you want the Venmo app to open:
 
@@ -63,3 +63,4 @@ If you want to display the results of the transaction, then the response variabl
 
 
 And that's it!  Happy coding! 
+  
