@@ -22,12 +22,12 @@ scroll to the bottom of this page: https://venmo.com/api).
     }
 
 where all of these parameters are Strings:
-    app_id is the app_id you have registered with venmo.com
-    app_local_id is something you make up. An example is "abcd". 
-    app_name is the name of your app
-    recipient is the venmo username, phone number, or email address of the person who is being paid or charged
-    amount is the amount to be paid or charged
-    note is the note that will be sent with the payment/charge.  For example, the note might be "for a drink on me!"
+    * app_id is the app_id you have registered with venmo.com 
+    * app_local_id is something you make up. An example is "abcd".  
+    * app_name is the name of your app 
+    * recipient is the venmo username, phone number, or email address of the person who is being paid or charged 
+    * amount is the amount to be paid or charged 
+    * note is the note that will be sent with the payment/charge.  For example, the note might be "for a drink on me!" 
 
 
 
