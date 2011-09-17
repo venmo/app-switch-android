@@ -56,6 +56,7 @@ where 9999 is your app_id and abcd is the app_local_id you created above.
 where app_secret is the secret key you were given when you registered your app with Venmo.  
 
 If you want to display the results of the transaction, then the response variable contains public methods you can use to access these variables:
+
 * response.getSuccess()
 * response.getNote()
 * response.getAmount()
