@@ -1,4 +1,4 @@
-Use this SDK to easily add Venmo payments to your app!  Just follow these steps:
+Use this SDK to easily add Venmo payments to your Android app!  Just follow these steps:
 
 1) First you need to register your app with Venmo here: https://venmo.com/account/app/new (for a description on what these fields are,
 scroll to the bottom of this page: https://venmo.com/api).  
