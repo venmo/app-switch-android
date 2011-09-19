@@ -1,4 +1,4 @@
-package com.drinksonme.util;
+//insert package name here
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

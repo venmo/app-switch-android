@@ -1,14 +1,11 @@
-package com.drinksonme.util; 
+//insert package name here
 
 import java.io.*;
 import java.util.*;
 import java.net.URLEncoder;
 
 import org.json.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -28,15 +25,6 @@ import android.widget.EditText;
 
 public class VenmoSDK
 {
-	
-	//private String myAppID, myAppLocalId, myAppName;
-	public VenmoSDK(String myAppId, String myAppLocalId, String myAppName)
-	{
-		/*this.myAppId = myAppId;
-		this.myAppLocalId = myAppLocalId;
-		this.myAppName = myAppName;*/
-		
-	}
 	
 	/*
 	 * Takes the recipients, amount, and note, and returns an Intent object
@@ -208,9 +196,14 @@ public class VenmoSDK
 			 //need to json decode data
 			 try
 			 {
-				 JSONArray response = (JSONArray)JSONValue.parse(data);
+				 Log.v("Drinks VenmoSDK", "Reached try block");
 				 
-				 JSONObject obj = (JSONObject)response.get(0);
+				 JSONArray rawJSON = new JSONArray(data);
+				 Log.v("Drinks VenmoSDK", "rawJSON: " + rawJSON);
+				 
+				 JSONObject obj = (JSONObject)rawJSON.get(0);
+				 
+				 Log.v("Drinks VenmoSDK", "obj: " + obj);
 				 
 				 String payment_id = obj.get("payment_id").toString();
 				 String note = obj.get("note").toString();
@@ -222,7 +215,7 @@ public class VenmoSDK
 			 }
 			 catch(Exception e)
 			 {
-				 Log.d("VenmoSDK", "Exception caught: " + e.getMessage());
+				 Log.d("VenmoSDK", "Exception caught, setting venmo response to null: " + e.getMessage());
 				 myVenmoResponse = new VenmoResponse(null, null, null, "0");
 			 } 
 		 }
@@ -232,6 +225,7 @@ public class VenmoSDK
 			 myVenmoResponse = new VenmoResponse(null, null, null, "0");
 		 }
 		
+		 Log.v("Drinks VenmoSDK", "venmo response note: " + myVenmoResponse.getNote() + ", amount: " + myVenmoResponse.getAmount() + ", success: " + myVenmoResponse.getSuccess());
 		 return myVenmoResponse;
 		
 	}
