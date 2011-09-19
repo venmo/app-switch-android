@@ -196,14 +196,10 @@ public class VenmoSDK
 			 //need to json decode data
 			 try
 			 {
-				 Log.v("Drinks VenmoSDK", "Reached try block");
-				 
 				 JSONArray rawJSON = new JSONArray(data);
-				 Log.v("Drinks VenmoSDK", "rawJSON: " + rawJSON);
 				 
 				 JSONObject obj = (JSONObject)rawJSON.get(0);
 				 
-				 Log.v("Drinks VenmoSDK", "obj: " + obj);
 				 
 				 String payment_id = obj.get("payment_id").toString();
 				 String note = obj.get("note").toString();
@@ -225,7 +221,7 @@ public class VenmoSDK
 			 myVenmoResponse = new VenmoResponse(null, null, null, "0");
 		 }
 		
-		 Log.v("Drinks VenmoSDK", "venmo response note: " + myVenmoResponse.getNote() + ", amount: " + myVenmoResponse.getAmount() + ", success: " + myVenmoResponse.getSuccess());
+		 Log.v("VenmoSDK", "venmo response note: " + myVenmoResponse.getNote() + ", amount: " + myVenmoResponse.getAmount() + ", success: " + myVenmoResponse.getSuccess());
 		 return myVenmoResponse;
 		
 	}
