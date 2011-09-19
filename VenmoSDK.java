@@ -28,7 +28,7 @@ public class VenmoSDK
 	
 	/*
 	 * Takes the recipients, amount, and note, and returns an Intent object
-	 */
+	 */ 
 	public static Intent openVenmoPayment(String myAppId, String myAppLocalId, String myAppName, String recipients, String amount, String note, String txn)
 	{
 		String venmo_uri = "venmo://paycharge?txn=" + txn;
