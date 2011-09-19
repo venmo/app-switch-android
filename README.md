@@ -3,7 +3,7 @@ Use this SDK to easily add Venmo payments to your Android app!  Just follow thes
 1) First you need to register your app with Venmo here: https://venmo.com/account/app/new (for a description on what these fields are,
 go here: https://venmo.com/api#registering-an-application). After your app has been approved, you will need to get your app credentials here: https://venmo.com/account/settings/developers.  
 
-2) Download the two files listed in this repository, and include them in your directory: VenmoSDK.java and VenmoResponse.java.  
+2) Download the two files listed in this repository, and include them in your directory: VenmoSDK.java and VenmoResponse.java. You'll need to add your package name at the top of each file (e.g. "package com.name;") 
 
 3) You'll also need to download json_simple-1.1.jar from here: http://code.google.com/p/json-simple/.  Add this to your libs directory (create this folder if it doesn't already exist). 
 
