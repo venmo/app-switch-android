@@ -34,7 +34,7 @@ where all of these parameters are Strings:
 
 Then, you need to provide a way for the Venmo app to be able to get back to your app after the request goes through.  Here's how: 
 
-6) Add this to your manifest file: 
+6) Add this to your manifest file, inside of your <application> </application> tags: 
 
 	<activity android:name=".URLActivity">
 		<intent-filter>
