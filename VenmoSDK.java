@@ -80,7 +80,9 @@ public class VenmoSDK
     		Log.e("venmodemo", "cannot encode app local id");
     	}
     	
-    	
+    
+        venmo_uri += "&using_new_sdk=true";
+
     	Log.d("VenmoSDK", "URI: " + venmo_uri);
     	
     	venmo_uri = venmo_uri.replaceAll("\\+", "%20"); // use %20 encoding instead of +
