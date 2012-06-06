@@ -36,33 +36,33 @@ This will open the Venmo app's pay/charge screen if the user has the Venmo app i
 
 6) If you look at the previous step, you'll see that the Venmo activity that allows the transaction to be completed is opened using the "startActivityForResult" method, which means that once the activity is finished, control will be yielded back to your activity.  To handle the response (i.e. to know whether the payment was completed successfully), implement Android's onActivityResult method in the same activity where you wrote the code in step 5.  This will look like the following: 
 
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data)
-{
-    switch(requestCode) {
-        case 1: { //1 is the requestCode we picked for Venmo earlier when we called startActivityForResult
-            if(resultCode == RESULT_OK) {
-                String signedrequest = data.getStringExtra("signedrequest");
-                if(signedrequest != null) {
-                    VenmoResponse response = (new VenmoSDK()).validateVenmoPaymentResponse(signedrequest, app_secret);
-                    if(response.getSuccess().equals("1")) {
-                        //Payment successful.  Use data from response object to display a success message
-                        String note = response.getNote();
-                        String amount = response.getAmount();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch(requestCode) {
+            case 1: { //1 is the requestCode we picked for Venmo earlier when we called startActivityForResult
+                if(resultCode == RESULT_OK) {
+                    String signedrequest = data.getStringExtra("signedrequest");
+                    if(signedrequest != null) {
+                        VenmoResponse response = (new VenmoSDK()).validateVenmoPaymentResponse(signedrequest, app_secret);
+                        if(response.getSuccess().equals("1")) {
+                            //Payment successful.  Use data from response object to display a success message
+                            String note = response.getNote();
+                            String amount = response.getAmount();
+                        }
                     }
+                    else {
+                        String error_message = data.getStringExtra("error_message");
+                        //An error ocurred.  Make sure to display the error_message to the user
+                    }                               
                 }
-                else {
-                    String error_message = data.getStringExtra("error_message");
-                    //An error ocurred.  Make sure to display the error_message to the user
-                }                               
-            }
-            else if(resultCode == RESULT_CANCELED) {
-                //The user cancelled the payment
-            }
+                else if(resultCode == RESULT_CANCELED) {
+                    //The user cancelled the payment
+                }
             break;
-        }       
+            }           
+        }
     }
-}
 
 You'll need to add VenmoSDK.VenmoResponse to your imports, like this: import com.venmo.demo.VenmoSDK.VenmoResponse; (where com.venmo.demo is your package name)
 
