@@ -1,7 +1,21 @@
 Use this SDK to easily add Venmo payments to your Android app!  Just follow these steps:
 
-1) First you need to register your app with Venmo here: https://venmo.com/account/app/new (for a description on what these fields are,
-go here: https://venmo.com/api#registering-an-application). After your app has been approved, you will need to get your app credentials here: https://venmo.com/account/settings/developers.  
+1) First you need to register your app with Venmo here: 
+
+https://venmo.com/account/app/new 
+
+![Create new application](https://dl.dropbox.com/u/800/Captured/GbalC.png)
+
+For more information on creating a new application, go here: 
+
+https://venmo.com/api#registering-an-application.
+
+After your app has been approved, you will need to get your app credentials here: 
+
+https://venmo.com/account/settings/developers.  
+
+
+
 
 2) Download the following two files and include them in your directory: VenmoSDK.java and VenmoWebViewActivity. You'll need to edit your manifest to add VenmoWebViewActivity as an activity, and you'll need to add your package name at the top of each file (e.g. "package com.name;").  Also, make sure your manifest includes the internet permission: "android.permission.INTERNET".
 
