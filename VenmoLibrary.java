@@ -15,9 +15,9 @@ import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
 
-public class VenmoSDK
+public class VenmoLibrary
 {
-	public VenmoSDK()
+	public VenmoLibrary()
 	{
 		
 	}
@@ -33,21 +33,21 @@ public class VenmoSDK
     		try {
     			venmo_uri += "&recipients=" + URLEncoder.encode(recipients, "UTF-8");
     		} catch (UnsupportedEncodingException e) {
-				Log.e("venmodemo", "cannot encode recipients");
+				Log.e("venmo_library", "cannot encode recipients");
 			}
     	}
     	if (!amount.equals("")) {
     		try {
 				venmo_uri += "&amount=" + URLEncoder.encode(amount, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
-				Log.e("venmodemo", "cannot encode amount");
+				Log.e("venmo_library", "cannot encode amount");
 			}
     	}
     	if (!note.equals("")) {
     		try {
     			venmo_uri += "&note=" + URLEncoder.encode(note, "UTF-8");
     		} catch (UnsupportedEncodingException e) {
-    			Log.e("venmodemo", "cannot encode note");
+    			Log.e("venmo_library", "cannot encode note");
 			}
     	}
     	
@@ -56,7 +56,7 @@ public class VenmoSDK
     	}
     	catch(UnsupportedEncodingException e)
     	{
-    		Log.e("venmodemo", "cannot encode app ID");
+    		Log.e("venmo_library", "cannot encode app ID");
     	}
     	
     	try {
@@ -64,7 +64,7 @@ public class VenmoSDK
     	}
     	catch(UnsupportedEncodingException e)
     	{
-    		Log.e("venmodemo", "cannot encode app Name");
+    		Log.e("venmo_library", "cannot encode app Name");
     	}
     	
     	try {
@@ -72,18 +72,16 @@ public class VenmoSDK
     	}
     	catch(UnsupportedEncodingException e)
     	{
-    		Log.e("venmodemo", "cannot encode app local id");
+    		Log.e("venmo_library", "cannot encode app local id");
     	}
     	
     	venmo_uri += "&using_new_sdk=true";
     	
-    	Log.d("VenmoSDK", "URI: " + venmo_uri);
     	
     	venmo_uri = venmo_uri.replaceAll("\\+", "%20"); // use %20 encoding instead of +
     	
     	Intent nativeIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(venmo_uri));
     	
-    	Log.v("VenmoSDK", "note: " + note);
     	
 		return nativeIntent;
 	}
@@ -100,21 +98,21 @@ public class VenmoSDK
     		try {
     			venmo_uri += "&recipients=" + URLEncoder.encode(recipients, "UTF-8");
     		} catch (UnsupportedEncodingException e) {
-				Log.e("venmodemo", "cannot encode recipients");
+				Log.e("venmo_library", "cannot encode recipients");
 			}
     	}
     	if (!amount.equals("")) {
     		try {
 				venmo_uri += "&amount=" + URLEncoder.encode(amount, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
-				Log.e("venmodemo", "cannot encode amount");
+				Log.e("venmo_library", "cannot encode amount");
 			}
     	}
     	if (!note.equals("")) {
     		try {
     			venmo_uri += "&note=" + URLEncoder.encode(note, "UTF-8");
     		} catch (UnsupportedEncodingException e) {
-    			Log.e("venmodemo", "cannot encode note");
+    			Log.e("venmo_library", "cannot encode note");
 			}
     	}
     	
@@ -123,7 +121,7 @@ public class VenmoSDK
     	}
     	catch(UnsupportedEncodingException e)
     	{
-    		Log.e("venmodemo", "cannot encode app ID");
+    		Log.e("venmo_library", "cannot encode app ID");
     	}
     	
     	try {
@@ -131,7 +129,7 @@ public class VenmoSDK
     	}
     	catch(UnsupportedEncodingException e)
     	{
-    		Log.e("venmodemo", "cannot encode app Name");
+    		Log.e("venmo_library", "cannot encode app Name");
     	}
     	
     	try {
@@ -139,7 +137,7 @@ public class VenmoSDK
     	}
     	catch(UnsupportedEncodingException e)
     	{
-    		Log.e("venmodemo", "cannot encode app local id");
+    		Log.e("venmo_library", "cannot encode app local id");
     	}
     	
     	try {
@@ -147,11 +145,10 @@ public class VenmoSDK
     	}
     	catch(UnsupportedEncodingException e)
     	{
-    		Log.e("venmodemo", "cannot encode client=android");
+    		Log.e("venmo_library", "cannot encode client=android");
     	}
     	
     	
-    	Log.d("VenmoSDK", "URI: " + venmo_uri);
     	
     	venmo_uri = venmo_uri.replaceAll("\\+", "%20"); // use %20 encoding instead of +
     	
@@ -179,25 +176,19 @@ public class VenmoSDK
 		}
 		
 		String decoded_signature = base64_url_decode(encoded_signature);
-		Log.d("VenmoSDK", "decoded_signature: " + decoded_signature);
 		
 		String data;
 		
         // check signature 
         String expected_sig = hash_hmac(payload, app_secret, "HmacSHA256");
         
-        Log.d("VenmoSDK", "expected_sig using HmacSHA256:" + expected_sig);
-        
         VenmoResponse myVenmoResponse;
         
         if (decoded_signature.equals(expected_sig))
         {
-            Log.d("VenmoSDK", "Signature matches!");
             data = base64_url_decode(payload);
-            Log.v("VenmoSDK", "base64 decoded payload: " + data);
             //need to json decode data
             data = base64_url_decode(payload);
-            Log.v("VenmoSDK", "base64 decoded payload: " + data);
             
             
             //need to json decode data
@@ -217,13 +208,12 @@ public class VenmoSDK
             }
             catch(Exception e)
             {
-                Log.d("VenmoSDK", "Exception caught: " + e.getMessage());
                 myVenmoResponse = new VenmoResponse(null, null, null, "0");
             } 
         }
         else
         {
-            Log.d("VenmoSDK", "Signature does NOT match");
+            //Signature does NOT match
             myVenmoResponse = new VenmoResponse(null, null, null, "0");
         }
 		
@@ -245,7 +235,6 @@ public class VenmoSDK
 		} 
 		catch (Exception e) 
 		{
-		    Log.d("VenmoSDK Error Message Caught", e.getMessage());
 		    return "";
 		}
 	}

@@ -1,4 +1,7 @@
-Use this SDK to easily add Venmo payments to your Android app!  Just follow these steps:
+Venmo Your Friends Android Library
+==============================
+
+Use this library to easily add Venmo payments to your Android app!  Just follow these steps:
 
 1) First you need to register your app with Venmo here: 
 
@@ -17,22 +20,22 @@ https://venmo.com/account/settings/developers.
 
 
 
-2) Download the following two files and include them in your directory: VenmoSDK.java and VenmoWebViewActivity. You'll need to edit your manifest to add VenmoWebViewActivity as an activity, and you'll need to add your package name at the top of each file (e.g. "package com.name;").  Also, make sure your manifest includes the internet permission: "android.permission.INTERNET".
+2) Download the following two files and include them in your directory: VenmoLibrary.java and VenmoWebViewActivity. You'll need to edit your manifest to add VenmoWebViewActivity as an activity, and you'll need to add your package name at the top of each file (e.g. "package com.name;").  Also, make sure your manifest includes the internet permission: "android.permission.INTERNET".
 
 3) Download venmo_webview.xml and add it to your res/layout directory.  
 
 4) You'll also need to download json_simple-1.1.jar from here: http://code.google.com/p/json-simple/.  Add this to your libs directory (create this folder if it doesn't already exist). You'll need to add that json jar to your class path.  To do so, in Eclipse go to Project -> Properties, and then click "Java Build Path" on the left.  Click the Libraries tab at the top.  Click "Add Jar" and then find the .jar file you just put in your libs directory.  Select it and click "OK".  See screenshot.png for a screenshot of this. 
 
-5) Now, you're ready to use the SDK!  From the activity in your app where you want to open the Venmo app, include the following code:
+5) Now, you're ready to use the library!  From the activity in your app where you want to open the Venmo app, include the following code:
 
     try {
-        Intent venmoIntent = VenmoSDK.openVenmoPayment(app_id, app_name, recipient, amount, note, txn);
+        Intent venmoIntent = VenmoLibrary.openVenmoPayment(app_id, app_name, recipient, amount, note, txn);
         startActivityForResult(venmoIntent, 1); //1 is the requestCode we are using for Venmo. Feel free to change this to another number. 
     }
     catch (android.content.ActivityNotFoundException e) //Venmo native app not install on device, so let's instead open a mobile web version of Venmo in a WebView
     {
         Intent venmoIntent = new Intent(MainActivity.this, VenmoWebViewActivity.class);
-        String venmo_uri = VenmoSDK.openVenmoPaymentInWebView(app_id, app_name, recipient, amount, note, txn);
+        String venmo_uri = VenmoLibrary.openVenmoPaymentInWebView(app_id, app_name, recipient, amount, note, txn);
         venmoIntent.putExtra("url", venmo_uri);
         startActivityForResult(venmoIntent, 1);
     }
@@ -58,7 +61,7 @@ This will open the Venmo app's pay/charge screen if the user has the Venmo app i
                 if(resultCode == RESULT_OK) {
                     String signedrequest = data.getStringExtra("signedrequest");
                     if(signedrequest != null) {
-                        VenmoResponse response = (new VenmoSDK()).validateVenmoPaymentResponse(signedrequest, app_secret);
+                        VenmoResponse response = (new VenmoLibrary()).validateVenmoPaymentResponse(signedrequest, app_secret);
                         if(response.getSuccess().equals("1")) {
                             //Payment successful.  Use data from response object to display a success message
                             String note = response.getNote();
@@ -78,7 +81,7 @@ This will open the Venmo app's pay/charge screen if the user has the Venmo app i
         }
     }
 
-You'll need to add VenmoSDK.VenmoResponse to your imports, like this: import com.venmo.demo.VenmoSDK.VenmoResponse; (where com.venmo.demo is your package name)
+You'll need to add VenmoLibrary.VenmoResponse to your imports, like this: import com.venmo.demo.VenmoLibrary.VenmoResponse; (where com.venmo.demo is your package name)
 
 Make sure you display the results of the transaction after it is completed.  The response variable above contains public methods you can use to access these variables:
 
