@@ -1,4 +1,4 @@
-Venmo Your Friends Android Library
+Venmo App Switch Android Library
 ==============================
 
 Use this library to easily add Venmo payments to your Android app!  Just follow these steps:
