@@ -7,7 +7,7 @@ Use this library to easily add Venmo payments to your Android app!  Just follow 
 
 https://venmo.com/account/app/new 
 
-![Create new application](https://dl.dropbox.com/u/800/Captured/GbalC.png)
+![Create new application](https://dl.dropboxusercontent.com/s/ffo01uzr65y9kzw/GbalC.png)
 
 For more information on creating a new application, go here: 
 
