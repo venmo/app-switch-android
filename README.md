@@ -13,13 +13,6 @@ For more information on creating a new application, go here:
 
 https://venmo.com/api#registering-an-application.
 
-After your app has been approved, you will need to get your app credentials here: 
-
-https://venmo.com/account/settings/developers.  
-
-
-
-
 2) Download the following two files and include them in your directory: VenmoLibrary.java and VenmoWebViewActivity. You'll need to edit your manifest to add VenmoWebViewActivity as an activity, and you'll need to add your package name at the top of each file (e.g. "package com.name;").  Also, make sure your manifest includes the internet permission: "android.permission.INTERNET".
 
 3) Download venmo_webview.xml and add it to your res/layout directory.  
