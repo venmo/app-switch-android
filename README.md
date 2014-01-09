@@ -3,7 +3,7 @@ Venmo App Switch Android Library
 
 Use this library to easily add Venmo payments to your Android app!  Just follow these steps:
 
-1. Register your app with Venmo here: 
+Register your app with Venmo here: 
 
 https://venmo.com/account/app/new 
 
@@ -44,7 +44,7 @@ where all of these parameters are Strings:
 
 This will open the Venmo app's pay/charge screen if the user has the Venmo app installed on the phone.  If they don't have it installed, it will instead send them to the activity you added - VenmoWebViewActivity - which displays a mobile web version of Venmo in a WebView.  This will allow the user to enter his credit card information and complete the transaction. (Or, if they have an account but don't have the app for whatever reason, it will allow them to login and complete the transaction in the WebView.) 
 
-6. If you look at the previous step, you'll see that the Venmo activity that allows the transaction to be completed is opened using the "startActivityForResult" method, which means that once the activity is finished, control will be yielded back to your activity.  To handle the response (i.e. to know whether the payment was completed successfully), implement Android's onActivityResult method in the same activity where you wrote the code in step 5.  This will look like the following: 
+If you look at the previous step, you'll see that the Venmo activity that allows the transaction to be completed is opened using the "startActivityForResult" method, which means that once the activity is finished, control will be yielded back to your activity.  To handle the response (i.e. to know whether the payment was completed successfully), implement Android's onActivityResult method in the same activity where you wrote the code in step 5.  This will look like the following: 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
