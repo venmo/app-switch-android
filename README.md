@@ -21,6 +21,7 @@ https://venmo.com/api#registering-an-application.
 
 5. Now, you're ready to use the library!  From the activity in your app where you want to open the Venmo app, include the following code:
 
+```java
     try {
         Intent venmoIntent = VenmoLibrary.openVenmoPayment(app_id, app_name, recipient, amount, note, txn);
         startActivityForResult(venmoIntent, 1); //1 is the requestCode we are using for Venmo. Feel free to change this to another number. 
@@ -32,6 +33,7 @@ https://venmo.com/api#registering-an-application.
         venmoIntent.putExtra("url", venmo_uri);
         startActivityForResult(venmoIntent, 1);
     }
+```
 
 where all of these parameters are Strings:
 
