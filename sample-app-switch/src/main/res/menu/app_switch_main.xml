@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item android:id="@+id/appswitch_action_settings"
+        android:title="@string/appswitch_hello_world"
+        android:orderInCategory="100" />
+</menu>

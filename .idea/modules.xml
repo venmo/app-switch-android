@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app-switch-android.iml" filepath="$PROJECT_DIR$/app-switch-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-app-switch/sample-app-switch.iml" filepath="$PROJECT_DIR$/sample-app-switch/sample-app-switch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/venmo-app-switch-module/venmo-app-switch-module.iml" filepath="$PROJECT_DIR$/venmo-app-switch-module/venmo-app-switch-module.iml" />
+    </modules>
+  </component>
+</project>
+

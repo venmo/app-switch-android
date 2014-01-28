@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="appswitch_app_name">My Module</string>
+    <string name="appswitch_hello_world">Hello world!</string>
+    <string name="appswitch_action_settings">Settings</string>
+
+</resources>
