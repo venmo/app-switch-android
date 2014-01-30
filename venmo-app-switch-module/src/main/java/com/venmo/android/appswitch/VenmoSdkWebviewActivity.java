@@ -1,9 +1,6 @@
 package com.venmo.android.appswitch;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -11,7 +8,6 @@ import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 public class VenmoSdkWebviewActivity extends Activity {
 
@@ -27,13 +23,14 @@ public class VenmoSdkWebviewActivity extends Activity {
         }
 
         WebView webview = new WebView(this);
-        webview.setWebChromeClient(new WebChromeClient(){
+        webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                setProgress(newProgress * 1000); // http://developer.android.com/reference/android/webkit/WebView.html
+                setProgress(newProgress *
+                            1000); // http://developer.android.com/reference/android/webkit/WebView.html
             }
         });
-        webview.setWebViewClient(new WebViewClient(){
+        webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -42,7 +39,8 @@ public class VenmoSdkWebviewActivity extends Activity {
         });
 
         Bundle extras = getIntent().getExtras();
-        String url = String.format("https://venmo.com/touch/signup_to_pay?client=android&app_id=%s&app_name=%s&amount=%f&txn=%s&recipients=%s&note=%s",
+        String url = String.format(
+                "https://venmo.com/touch/signup_to_pay?client=android&app_id=%s&app_name=%s&amount=%f&txn=%s&recipients=%s&note=%s",
                 extras.getString(TransactionRequest.EXTRA_APP_ID),
                 extras.getString(TransactionRequest.EXTRA_APP_NAME),
                 extras.getDouble(TransactionRequest.EXTRA_AMOUNTS),
