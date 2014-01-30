@@ -46,7 +46,6 @@ public final class CompletedTransaction {
         }
 
         public Builder recipient(String target, double amount) {
-            Log.d("Ronblah recip()", target + " " + amount);
             mTransaction.mTargetsAndAmounts.put(target, amount);
             return this;
         }

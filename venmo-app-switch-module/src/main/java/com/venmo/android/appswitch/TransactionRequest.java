@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -242,19 +243,26 @@ public final class TransactionRequest {
      * @param listener
      */
     public static void handleResponse(Intent intent, OnTransactionListener listener) {
-        if (intent.getBooleanExtra(EXTRA_TRANSACTION_COMPLETED, false)) {
+        Bundle extras = null;
+        if (intent == null) {
+            extras = new Bundle();
+        } else {
+            extras = intent.getExtras();
+            if (extras == null) {
+                extras = new Bundle();
+            }
+        }
+
+        if (extras.getBoolean(EXTRA_TRANSACTION_COMPLETED, false)) {
             CompletedTransaction.Builder builder = new CompletedTransaction.Builder()
-                    .note(intent.getStringExtra(EXTRA_NOTE))
-                    .transactionType(intent.getStringExtra(EXTRA_PAY_CHARGE).equals("pay") ?
+                    .note(extras.getString(EXTRA_NOTE))
+                    .transactionType(extras.getString(EXTRA_PAY_CHARGE).equals("pay") ?
                             TransactionType.PAY : TransactionType.CHARGE);
 
-            Log.d("Ronblah - targets = ", intent.getStringExtra(EXTRA_TARGETS));
-            Log.d("Ronblah - amounts = ", intent.getStringExtra(EXTRA_AMOUNTS));
-
             Iterator<String> targets = Splitter.on(TARGETS_DELIMITER).split(
-                    intent.getStringExtra(EXTRA_TARGETS)).iterator();
+                    extras.getString(EXTRA_TARGETS)).iterator();
             Iterator<String> amounts = Splitter.on(AMOUNTS_DELIMITER).split(
-                    intent.getStringExtra(EXTRA_AMOUNTS)).iterator();
+                    extras.getString(EXTRA_AMOUNTS)).iterator();
 
             while (targets.hasNext() && amounts.hasNext()) {
                 builder.recipient(targets.next(), Double.valueOf(amounts.next()));
