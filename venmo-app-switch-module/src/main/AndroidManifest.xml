@@ -1,12 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.venmo.android.appswitch">
 
+
+
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
         android:icon="@drawable/ic_launcher">
 
-        <activity android:name="com.venmo.android.appswitch.VenmoSdkWebviewActivity" />
+        <activity
+            android:name="com.venmo.android.appswitch.VenmoSdkWebviewActivity" />
 
     </application>
 

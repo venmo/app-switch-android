@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="SampleButton">
+        <item name="android:layout_width">320dp</item>
+        <item name="android:layout_height">60dp</item>
+    </style>
+
+</resources>

@@ -1,46 +1,32 @@
 package com.venmo.android.appswitch.sample;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.google.common.collect.Lists;
-import com.venmo.android.appswitch.PaymentRequest;
-import com.venmo.android.appswitch.PaymentRequest.Type;
-import com.venmo.android.appswitch.sample.R;
+import com.venmo.android.appswitch.CompletedTransaction;
+import com.venmo.android.appswitch.TransactionRequest;
+import com.venmo.android.appswitch.TransactionRequest.Environment;
+import com.venmo.android.appswitch.TransactionRequest.OnTransactionListener;
+import com.venmo.android.appswitch.TransactionRequest.TransactionType;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnTransactionListener {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String APP_SECRET = "TetADaxbQnD8s9NwaRWgxYSde3XN7NJs";
+    private static final int RESULT_VENMO_TRANSACTION_REQUEST = 45678;
+    // set this to whatever you want
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "Hello, world!");
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.d(TAG, "starting delayed task");
-                Collection<String> recipients = new ArrayList<String>();
-                recipients.add("jesse");
-                Intent paymentRequest = new PaymentRequest("1136", "xyear-dev")
-                        .amount(12.34d)
-                        .note("Hello, AppSwitchWorld!")
-                        .recipients(recipients)
-                        .type(Type.CHARGE)
-                        .getIntent(getApplicationContext());
-                startActivity(paymentRequest);
-            }
-        }, 3000);
+        setContentView(R.layout.app_switch_activity_main);
     }
 
     @Override
@@ -48,6 +34,72 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.app_switch_main, menu);
         return true;
+    }
+
+    public void onDefaultClick(View view) {
+        TransactionRequest.setEnvironment(Environment.DEBUG_ONLY_APP);
+        onButtonClicked(view);
+    }
+
+    public void onForceWebviewClick(View view) {
+        TransactionRequest.setEnvironment(Environment.DEBUG_ONLY_WEBVIEW);
+        onButtonClicked(view);
+    }
+
+    public void onForceAppClick(View view) {
+        TransactionRequest.setEnvironment(Environment.DEBUG_ONLY_APP);
+        onButtonClicked(view);
+    }
+
+    private void onButtonClicked(View view) {
+        Intent paymentRequest = new TransactionRequest("1136")
+                .note("Hello, AppSwitchWorld!")
+                .target("jesse", .01)
+                .type(TransactionType.CHARGE)
+                .getIntent(this);
+        startActivityForResult(paymentRequest, RESULT_VENMO_TRANSACTION_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RESULT_VENMO_TRANSACTION_REQUEST) {
+            TransactionRequest.handleResponse(data, this);
+        }
+    }
+
+    @Override
+    public void onTransactionCancelled() {
+        new AlertDialog.Builder(this).setTitle("Cancelled!")
+                                     .setMessage("The transaction was cancelled!")
+                                     .show();
+    }
+
+    @Override
+    public void onTransactionSuccess(CompletedTransaction transaction) {
+        StringBuilder message = new StringBuilder();
+        message.append("You ");
+        if (transaction.getTransactionType() == TransactionType.PAY) {
+            message.append("paid");
+        } else {
+            message.append("charged");
+        }
+        message.append(' ');
+
+        Iterator<Entry<String, Double>> iterator =
+                transaction.getTargetsAndAmounts().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Double> entry = iterator.next();
+            message.append(entry.getKey() + " $" + entry.getValue());
+
+            if (iterator.hasNext()) {
+                message.append(", ");
+            }
+        }
+        message.append(". The note left was: " + transaction.getNote());
+
+        new AlertDialog.Builder(this).setTitle("Success!")
+                                     .setMessage(message.toString())
+                                     .show();
     }
 
     @Override

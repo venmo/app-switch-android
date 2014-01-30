@@ -4,4 +4,8 @@
     <string name="appswitch_hello_world">Hello world!</string>
     <string name="appswitch_action_settings">Settings</string>
 
+    <string name="appswitch_button_default">Default behavior</string>
+    <string name="appswitch_button_app">Force Native behavior</string>
+    <string name="appswitch_button_webview">Force non-Native behavior</string>
+
 </resources>

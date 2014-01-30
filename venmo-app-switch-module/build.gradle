@@ -20,7 +20,7 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
+    compile 'com.android.support:appcompat-v7:18.0.+'
     compile group: 'com.google.guava', name: 'guava', version: '15.0'
 }
