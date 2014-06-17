@@ -26,7 +26,7 @@ public class VenmoLibrary
 	 */
 	public static Intent openVenmoPayment(String myAppId, String myAppName, String recipients, String amount, String note, String txn)
 	{
-		String venmo_uri = "venmosdk://paycharge?txn=" + txn;
+		String venmo_uri = "venmo://paycharge?txn=" + txn;
         
     	
     	if (!recipients.equals("")) {
