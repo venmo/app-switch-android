@@ -87,74 +87,6 @@ public class VenmoLibrary
 	}
 
 
-	/*
-	 * Takes the recipients, amount, and note, and returns a String representing the URL to visit to complete the transaction
-	 */
-	public static String openVenmoPaymentInWebView(String myAppId, String myAppName, String recipients, String amount, String note, String txn)
-	{
-		String venmo_uri = "https://venmo.com/?txn=" + txn;
-
-    	if (!recipients.equals("")) {
-    		try {
-    			venmo_uri += "&recipients=" + URLEncoder.encode(recipients, "UTF-8");
-    		} catch (UnsupportedEncodingException e) {
-				Log.e("venmo_library", "cannot encode recipients");
-			}
-    	}
-    	if (!amount.equals("")) {
-    		try {
-				venmo_uri += "&amount=" + URLEncoder.encode(amount, "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				Log.e("venmo_library", "cannot encode amount");
-			}
-    	}
-    	if (!note.equals("")) {
-    		try {
-    			venmo_uri += "&note=" + URLEncoder.encode(note, "UTF-8");
-    		} catch (UnsupportedEncodingException e) {
-    			Log.e("venmo_library", "cannot encode note");
-			}
-    	}
-
-    	try {
-    		venmo_uri+= "&app_id=" + URLEncoder.encode(myAppId, "UTF-8");
-    	}
-    	catch(UnsupportedEncodingException e)
-    	{
-    		Log.e("venmo_library", "cannot encode app ID");
-    	}
-
-    	try {
-    		venmo_uri+= "&app_name=" + URLEncoder.encode(myAppName, "UTF-8");
-    	}
-    	catch(UnsupportedEncodingException e)
-    	{
-    		Log.e("venmo_library", "cannot encode app Name");
-    	}
-
-    	try {
-    		venmo_uri+= "&app_local_id=" + URLEncoder.encode("abcd", "UTF-8");
-    	}
-    	catch(UnsupportedEncodingException e)
-    	{
-    		Log.e("venmo_library", "cannot encode app local id");
-    	}
-
-    	try {
-    		venmo_uri+= "&client=" + URLEncoder.encode("android", "UTF-8");
-    	}
-    	catch(UnsupportedEncodingException e)
-    	{
-    		Log.e("venmo_library", "cannot encode client=android");
-    	}
-
-
-
-    	venmo_uri = venmo_uri.replaceAll("\\+", "%20"); // use %20 encoding instead of +
-
-		return venmo_uri;
-	}
-
 	//Called once control has been given back to your app - it takes the signed_payload, decodes it, and gives you the response object which
 	//gives you details about the transaction - whether it was successful, the note, the amount, etc.
 	public VenmoResponse validateVenmoPaymentResponse(String signed_payload, String app_secret)
@@ -278,6 +210,3 @@ public class VenmoLibrary
 			return success;
 		}
 	}
-
-
-}
