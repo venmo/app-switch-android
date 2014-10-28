@@ -25,17 +25,17 @@ https://venmo.com/api#registering-an-application.
 
 ```java
         Intent venmoIntent = VenmoLibrary.openVenmoPayment(appId, appName, recipient, amount, note, txn);
-        startActivityForResult(venmoIntent, 1); //1 is the requestCode we are using for Venmo. Feel free to change this to another number. 
+        startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
 ```
 
-where all of these parameters are Strings:
+Where all of these parameters are Strings with definitions:
 
-* appId is the app_id you have registered with venmo.com 
-* appName is the name of your app 
-* recipient is the venmo username, phone number, or email address of the person who is being paid or charged 
-* amount is the amount to be paid or charged 
-* note is the note that will be sent with the payment/charge.  For example, the note might be "for a drink on me!" 
-* txn is either "pay" or "charge"
+* `appId` is the application ID you have registered with venmo.com 
+* `appName` is the name of your app 
+* `recipient` is the venmo username, phone number, or email address of the person who is being paid or charged 
+* `amount` is the amount to be paid or charged 
+* `note` is the note that will be sent with the payment/charge.  For example, the note might be "for a drink on me!" 
+* `txn` is either "pay" or "charge"
 
 
 This will open the Venmo app's pay/charge screen if the user has the Venmo app installed on the phone.
@@ -46,7 +46,7 @@ If you look at the previous step, you'll see that the Venmo activity that allows
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         switch(requestCode) {
-            case 1: { //1 is the requestCode we picked for Venmo earlier when we called startActivityForResult
+            case REQUEST_CODE_VENMO_APP_SWITCH: {
                 if(resultCode == RESULT_OK) {
                     String signedrequest = data.getStringExtra("signedrequest");
                     if(signedrequest != null) {
@@ -74,10 +74,10 @@ You'll need to add VenmoLibrary.VenmoResponse to your imports, like this: import
 
 Make sure you display the results of the transaction after it is completed.  The response variable above contains public methods you can use to access these variables:
 
-* response.getSuccess()
-* response.getNote()
-* response.getAmount()
-* response.getPaymentId()
+* `response.getSuccess()`
+* `response.getNote()`
+* `response.getAmount()`
+* `response.getPaymentId()`
 
 
 And that's it!  Happy coding! 
