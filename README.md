@@ -76,10 +76,10 @@ You'll need to add VenmoLibrary.VenmoResponse to your imports, like this: import
 
 Make sure you display the results of the transaction after it is completed.  The response variable above contains public methods you can use to access these variables:
 
-* `response.getSuccess()`
-* `response.getNote()`
-* `response.getAmount()`
-* `response.getPaymentId()`
+`response.getSuccess()`
+`response.getNote()`
+`response.getAmount()`
+`response.getPaymentId()`
 
 
 And that's it!  Happy coding! 
