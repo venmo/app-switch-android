@@ -19,32 +19,26 @@ https://venmo.com/api#registering-an-application.
 
 4. You'll also need to download json_simple-1.1.jar from here: http://code.google.com/p/json-simple/.  Add this to your libs directory (create this folder if it doesn't already exist). You'll need to add that json jar to your class path.  To do so, in Eclipse go to Project -> Properties, and then click "Java Build Path" on the left.  Click the Libraries tab at the top.  Click "Add Jar" and then find the .jar file you just put in your libs directory.  Select it and click "OK".  See screenshot.png for a screenshot of this. 
 
-5. Now, you're ready to use the library!  From the activity in your app where you want to open the Venmo app, include the following code:
+5. To open the Venmo payment screen, the client device must have Venmo installed. We provide a convenience method to determine Venmo's existence -- `VenmoLibrary.isVenmoInstalled(Context c)`
+
+6. After determining that Venmo is installed on the client, you may safely attempt to open a payment screen. The payment `Activity` is started via:
 
 ```java
-    try {
-        Intent venmoIntent = VenmoLibrary.openVenmoPayment(app_id, app_name, recipient, amount, note, txn);
+        Intent venmoIntent = VenmoLibrary.openVenmoPayment(appId, appName, recipient, amount, note, txn);
         startActivityForResult(venmoIntent, 1); //1 is the requestCode we are using for Venmo. Feel free to change this to another number. 
-    }
-    catch (android.content.ActivityNotFoundException e) //Venmo native app not install on device, so let's instead open a mobile web version of Venmo in a WebView
-    {
-        Intent venmoIntent = new Intent(MainActivity.this, VenmoWebViewActivity.class);
-        String venmo_uri = VenmoLibrary.openVenmoPaymentInWebView(app_id, app_name, recipient, amount, note, txn);
-        venmoIntent.putExtra("url", venmo_uri);
-        startActivityForResult(venmoIntent, 1);
-    }
 ```
 
 where all of these parameters are Strings:
 
-* app_id is the app_id you have registered with venmo.com 
-* app_name is the name of your app 
+* appId is the app_id you have registered with venmo.com 
+* appName is the name of your app 
 * recipient is the venmo username, phone number, or email address of the person who is being paid or charged 
 * amount is the amount to be paid or charged 
 * note is the note that will be sent with the payment/charge.  For example, the note might be "for a drink on me!" 
 * txn is either "pay" or "charge"
 
-This will open the Venmo app's pay/charge screen if the user has the Venmo app installed on the phone.  If they don't have it installed, it will instead send them to the activity you added - VenmoWebViewActivity - which displays a mobile web version of Venmo in a WebView.  This will allow the user to enter his credit card information and complete the transaction. (Or, if they have an account but don't have the app for whatever reason, it will allow them to login and complete the transaction in the WebView.) 
+
+This will open the Venmo app's pay/charge screen if the user has the Venmo app installed on the phone.
 
 If you look at the previous step, you'll see that the Venmo activity that allows the transaction to be completed is opened using the "startActivityForResult" method, which means that once the activity is finished, control will be yielded back to your activity.  To handle the response (i.e. to know whether the payment was completed successfully), implement Android's onActivityResult method in the same activity where you wrote the code in step 5.  This will look like the following: 
 
