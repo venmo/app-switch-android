@@ -3,15 +3,7 @@ Venmo App Switch Android Library
 
 Use this library to easily add Venmo payments to your Android app!  Just follow these steps:
 
-Register your app with Venmo here: 
-
-https://venmo.com/account/app/new 
-
-![Create new application](https://dl.dropboxusercontent.com/s/ffo01uzr65y9kzw/GbalC.png)
-
-For more information on creating a new application, go here: 
-
-https://venmo.com/api#registering-an-application.
+1. [Register your app with Venmo](https://developer.venmo.com/docs/quickstart#create-an-app) 
 
 2. Download the following two files and include them in your directory: VenmoLibrary.java and VenmoWebViewActivity. You'll need to edit your manifest to add VenmoWebViewActivity as an activity, and you'll need to add your package name at the top of each file (e.g. "package com.name;").  Also, make sure your manifest includes the internet permission: "android.permission.INTERNET".
 
@@ -83,4 +75,3 @@ Make sure you display the results of the transaction after it is completed.  The
 
 
 And that's it!  Happy coding! 
-  
