@@ -22,7 +22,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class VenmoLibrary {
     private static final String VENMO_PACKAGE = "com.venmo";
-    private static final String VENMO_ACTIVITY = "com.venmo.ComposeActivity";
+    private static final String VENMO_ACTIVITY = "com.venmo.controller.ComposeActivity";
 
     public VenmoLibrary() {}
 
