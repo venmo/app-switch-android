@@ -1,4 +1,4 @@
-⚠️ For Existing Venmo Developer API Users
+⚠️ [For Existing Venmo Developer API Users](https://developer.venmo.com)
 
 Venmo App Switch Android Library
 ==============================
